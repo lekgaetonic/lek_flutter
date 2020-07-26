@@ -3,6 +3,7 @@ import 'package:my_flutter_app/data/CustomTheme.dart';
 import 'package:my_flutter_app/services/getCustomTheme.dart';
 import 'package:flutter_mobile_carousel/carousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:my_flutter_app/widgets/bannerWidget.dart';
 
 class Post {
   final String title;
@@ -44,54 +45,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             //SearchBar<String>(),
-            SizedBox(
-              height: 10,
-            ),
-            CarouselSlider(
-              options: CarouselOptions(
-                  height: 100.0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                      print(_current);
-                    });
-                  }),
-              items: imgList.map((item) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      //margin: EdgeInsets.all(1.0),
-                      //width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            item,
-                            fit: BoxFit.fill,
-                            //width: 1000,
-                          )),
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: imgList.map((url) {
-                  int index = imgList.indexOf(url);
-                  return Container(
-                    width: 8.0,
-                    height: 8.0,
-                    margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _current == index
-                          ? const Color(0xFFFF9F1C)
-                          : Color.fromRGBO(0, 0, 0, 0.3),
-                    ),
-                  );
-                }).toList()),
+            BannerWidget(),
             sectionHeader("โปรโมชั่นแนะนำ"),
             Carousel(
                 rowCount: 3,

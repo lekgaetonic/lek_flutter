@@ -13,19 +13,22 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      // centerTitle: true,
       leading: const Icon(
         AntDesign.arrowleft,
-        color: Colors.black54,
+        color: const Color(0xFF4B2504),
       ),
       title: Container(
         height: 36,
         child: TextFormField(
+          // style: TextStyle(color: const Color(0xFFFBD3AF)),
           decoration: InputDecoration(
-              fillColor: const Color(0xFFF2F3F7),
+              fillColor: const Color(0xFFFBD3AF),
               filled: true,
               prefixIcon: const Icon(
                 AntDesign.search1,
-                color: Colors.black54,
+                color: const Color(0xFFA95308),
+                size: 18,
               ),
               // suffixIcon: const Icon(
               //   AntDesign.qrcode,
@@ -35,14 +38,14 @@ class _HeaderState extends State<Header> {
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 borderSide: BorderSide(
-                  color: Colors.white,
+                  color: const Color(0xFFCF660A),
                   width: 1.0,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 borderSide: BorderSide(
-                  color: Colors.white,
+                  color: const Color(0xFFCF660A),
                   width: 1.0,
                 ),
               ),
@@ -67,7 +70,7 @@ class _HeaderState extends State<Header> {
           padding: EdgeInsets.only(right: 20),
           child: const Icon(
             AntDesign.shoppingcart,
-            color: Colors.black54,
+            color: const Color(0xFF4B2504),
           ),
         ),
       ],

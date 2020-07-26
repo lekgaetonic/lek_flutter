@@ -40,6 +40,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   Future<TokenData> fetchAnonymousToken() async {
     Dio dio = new Dio();
     Response response = await dio.post(
@@ -64,19 +66,24 @@ class _MyAppState extends State<MyApp> {
 
   TokenData _token = null;
   bool _isLoading = true;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetchAnonymousToken().then((value) => setState(() {
-          _token = value;
-          _isLoading = false;
-        }));
+
+    fetchAnonymousToken().then((value) => {
+          _prefs.then((SharedPreferences prefs) =>
+              prefs.setString("token", _token.accessToken)),
+          setState(() {
+            _token = value;
+            _isLoading = false;
+          })
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(build);
     return _isLoading
         ? Container(
             color: Color(0xFF0A111F),
