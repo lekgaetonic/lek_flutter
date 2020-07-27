@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:my_flutter_app/screens/search.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -14,14 +15,14 @@ class _HeaderState extends State<Header> {
   Widget build(BuildContext context) {
     return AppBar(
       // centerTitle: true,
-      leading: const Icon(
-        AntDesign.arrowleft,
-        color: const Color(0xFF4B2504),
-      ),
+      // leading: const Icon(
+      //   AntDesign.arrowleft,
+      //   color: const Color(0xFFA95308),
+      // ),
       title: Container(
         height: 36,
         child: TextFormField(
-          // style: TextStyle(color: const Color(0xFFFBD3AF)),
+          style: TextStyle(color: const Color(0xFFA95308)),
           decoration: InputDecoration(
               fillColor: const Color(0xFFFBD3AF),
               filled: true,
@@ -38,18 +39,22 @@ class _HeaderState extends State<Header> {
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 borderSide: BorderSide(
-                  color: const Color(0xFFCF660A),
+                  color: const Color(0xFFF5821F),
                   width: 1.0,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 borderSide: BorderSide(
-                  color: const Color(0xFFCF660A),
+                  color: const Color(0xFFF5821F),
                   width: 1.0,
                 ),
               ),
               contentPadding: EdgeInsets.fromLTRB(8, 8, 8, 8)),
+          onTap: () => {
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => Search()))
+          },
           validator: (value) {
             if (value.isEmpty) {
               return 'Please enter some text';
@@ -67,10 +72,13 @@ class _HeaderState extends State<Header> {
         //   ),
         // ),
         Container(
-          padding: EdgeInsets.only(right: 20),
+          padding: EdgeInsets.only(
+            right: 20,
+            left: 20,
+          ),
           child: const Icon(
-            AntDesign.shoppingcart,
-            color: const Color(0xFF4B2504),
+            SimpleLineIcons.options,
+            // color: Color(0xFF333333),
           ),
         ),
       ],

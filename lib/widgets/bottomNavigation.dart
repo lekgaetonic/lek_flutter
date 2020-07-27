@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navigation_dot_bar/navigation_dot_bar.dart';
+import 'package:my_flutter_app/screens/account.dart';
+import 'package:my_flutter_app/screens/cart.dart';
+import 'package:my_flutter_app/screens/home.dart';
+import 'package:my_flutter_app/screens/message.dart';
+import 'package:my_flutter_app/screens/wishlist.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -11,30 +15,109 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   void initState() {
     super.initState();
-    print('initState');
+  }
+
+  List<Widget> _pageWidget = <Widget>[
+    Home(),
+    Message(),
+    Cart(),
+    Wishlish(),
+    Account(),
+  ];
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        {
+          Navigator.pushNamed(context, '/home');
+        }
+        break;
+
+      case 1:
+        {
+          Navigator.pushNamed(context, '/message');
+        }
+        break;
+      case 2:
+        {
+          Navigator.pushNamed(context, '/cart');
+        }
+        break;
+      case 3:
+        {
+          Navigator.pushNamed(context, '/wishlist');
+        }
+        break;
+      case 4:
+        {
+          Navigator.pushNamed(context, '/account');
+        }
+        break;
+      default:
+        {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Home()),
+          );
+        }
+        break;
+    }
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationDotBar(
-        // Usar -> "BottomNavigationDotBar"
-        activeColor: const Color(0xFFFF9F1C),
-        items: <BottomNavigationDotBarItem>[
-          BottomNavigationDotBarItem(
-              icon: AntDesign.home,
-              onTap: () {/* Cualquier funcion - [abrir nueva venta] */}),
-          BottomNavigationDotBarItem(
-              icon: AntDesign.notification,
-              onTap: () {/* Cualquier funcion - [abrir nueva venta] */}),
-          BottomNavigationDotBarItem(
-              icon: AntDesign.shoppingcart,
-              onTap: () {/* Cualquier funcion - [abrir nueva venta] */}),
-          BottomNavigationDotBarItem(
-              icon: AntDesign.hearto,
-              onTap: () {/* Cualquier funcion - [abrir nueva venta] */}),
-          BottomNavigationDotBarItem(
-              icon: AntDesign.user,
-              onTap: () {/* Cualquier funcion - [abrir nueva venta] */}),
+    return BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
+        // showSelectedLabels: false,
+        showUnselectedLabels: true,
+        unselectedItemColor: Color(0xFF707070),
+        currentIndex: _selectedIndex,
+        selectedItemColor: const Color(0xFFF5821F),
+        onTap: _onItemTapped,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(AntDesign.home),
+            title: Text(
+              'Home',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(AntDesign.notification),
+            title: Text(
+              'Feed',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(AntDesign.shoppingcart),
+            title: Text(
+              'Cart',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(AntDesign.hearto),
+            title: Text(
+              'Wishlist',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(AntDesign.user),
+            title: Text(
+              'Account',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
         ]);
   }
 }

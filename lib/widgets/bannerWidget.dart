@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:my_flutter_app/models/componentModel.dart';
+import 'package:my_flutter_app/util/shared.dart';
 import 'package:my_flutter_app/services/homeService.dart';
-import "package:my_flutter_app/models/HomeWidgetModel.dart";
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:loading_animations/loading_animations.dart';
 
 class BannerWidget extends StatefulWidget {
   @override
@@ -11,32 +13,31 @@ class BannerWidget extends StatefulWidget {
 
 class _BannerWidgetState extends State<BannerWidget> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  HomeWidgetModel _data = null;
+  List<ComponentModel> _data = null;
   bool _isLoading = true;
+  String _token = "";
   @override
   void initState() {
     super.initState();
-    print('initState');
     // String _token = "";
-    // _prefs.then((value) => _token = value.getString("token"));
-    HomeService()
-        .fetchHomeWidget('80c36b0f-c7d0-4524-8731-c3c1f4894240')
-        .then((value) => setState(() {
-              _data = value;
-              _isLoading = false;
-            }));
+    _prefs
+        .then((value) => _token = value.getString("token"))
+        .then((value) => HomeService().fetchHomeWidget(_token))
+        .then((value) => {
+              setState(() {
+                _data = value.rotates;
+                _isLoading = false;
+              })
+            });
   }
 
   @override
   Widget build(BuildContext context) {
     int _current = 0;
     return _isLoading
-        ? Container(
-            color: Color(0xFF0A111F),
-            child: Image.asset(
-              'assets/loadings/loading2.gif',
-            ),
-          )
+        ? Center(
+            child:
+                LoadingBouncingLine.circle(backgroundColor: Color(0xFFFBD3AF)))
         : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -52,7 +53,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                           print(_current);
                         });
                       }),
-                  items: imgList.map((item) {
+                  items: _data.map((item) {
                     return Builder(
                       builder: (BuildContext context) {
                         return Container(
@@ -62,7 +63,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.network(
-                                item,
+                                HOST + item.url,
                                 fit: BoxFit.fill,
                                 //width: 1000,
                               )),
@@ -73,11 +74,11 @@ class _BannerWidgetState extends State<BannerWidget> {
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: imgList.map((url) {
-                      int index = imgList.indexOf(url);
+                    children: _data.map((url) {
+                      int index = _data.indexOf(url);
                       return Container(
-                        width: 8.0,
-                        height: 8.0,
+                        width: 12.0,
+                        height: 10.0,
                         margin: EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 2.0),
                         decoration: BoxDecoration(
@@ -91,12 +92,3 @@ class _BannerWidgetState extends State<BannerWidget> {
               ]);
   }
 }
-
-String _host = 'https://ktwdevapi.ktw.co.th';
-final List<String> imgList = [
-  _host +
-      '/medias/sys_master/images/images/h8b/h1b/8845807026206/Happy-May-1900x650.jpg',
-  _host +
-      '/medias/sys_master/images/images/h32/h4a/8845808205854/TOHO-1900x650s.jpg',
-  _host + '/medias/sys_master/images/images/he1/hdc/8845808271390/ktw.jpg'
-];

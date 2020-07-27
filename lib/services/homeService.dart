@@ -1,9 +1,5 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import "package:my_flutter_app/models/HomeWidgetModel.dart";
-
-import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class HomeService {
@@ -20,7 +16,7 @@ class HomeService {
         ));
 
     if (response.statusCode == 200) {
-      print(response.data);
+      //print(response.data);
       return HomeWidgetModel.fromJson(response.data);
     } else {
       // If the server did not return a 200 OK response,

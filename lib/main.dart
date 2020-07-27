@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:my_flutter_app/widgets/bottomNavigation.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:my_flutter_app/screens/home.dart';
 import 'package:my_flutter_app/widgets/header.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import "package:my_flutter_app/data/TokenData.dart";
-import 'package:loading_overlay/loading_overlay.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
+
+import 'package:my_flutter_app/screens/message.dart';
+import 'package:my_flutter_app/screens/cart.dart';
+import 'package:my_flutter_app/screens/wishlist.dart';
+import 'package:my_flutter_app/screens/account.dart';
+import 'package:my_flutter_app/screens/search.dart';
 
 /// main is entry point of Flutter application
 void main() {
@@ -98,11 +101,15 @@ class _MyAppState extends State<MyApp> {
               primaryColor: const Color(0xFFF5821F),
               accentColor: Color(0xFF337ab7),
             ),
-            home: Scaffold(
-              backgroundColor: const Color(0xFFF2F3F7),
-              appBar: Header(),
-              body: Home(),
-              bottomNavigationBar: BottomNavigation(),
-            ));
+            home: Home(),
+            routes: <String, WidgetBuilder>{
+              '/home': (BuildContext context) => new Home(),
+              '/search': (BuildContext context) => new Search(),
+              '/message': (BuildContext context) => new Message(),
+              '/cart': (BuildContext context) => new Cart(),
+              '/wishlist': (BuildContext context) => new Wishlish(),
+              '/account': (BuildContext context) => new Account(),
+            },
+          );
   }
 }

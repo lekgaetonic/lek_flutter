@@ -38,6 +38,8 @@ dependencies:
   carousel_slider: ^2.2.1
   flutter_mobile_carousel: ^1.0.3
   loading_overlay: ^0.2.1
+  loading: ^1.0.2
+  loading_animations: "^2.1.0"
 
 dev_dependencies:
   flutter_test:

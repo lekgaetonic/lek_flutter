@@ -4,6 +4,8 @@ import 'package:my_flutter_app/services/getCustomTheme.dart';
 import 'package:flutter_mobile_carousel/carousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:my_flutter_app/widgets/bannerWidget.dart';
+import 'package:my_flutter_app/widgets/bottomNavigation.dart';
+import 'package:my_flutter_app/widgets/header.dart';
 
 class Post {
   final String title;
@@ -39,6 +41,7 @@ class _HomeState extends State<Home> {
     int _current = 0;
 
     return Scaffold(
+      appBar: Header(),
       body: SingleChildScrollView(
         // this will make your body scrollable
         child: Column(
@@ -122,6 +125,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }
@@ -153,14 +157,14 @@ viewMore() {
   );
 }
 
-String _host = 'https://ktwdevapi.ktw.co.th';
-final List<String> imgList = [
-  _host +
-      '/medias/sys_master/images/images/h8b/h1b/8845807026206/Happy-May-1900x650.jpg',
-  _host +
-      '/medias/sys_master/images/images/h32/h4a/8845808205854/TOHO-1900x650s.jpg',
-  _host + '/medias/sys_master/images/images/he1/hdc/8845808271390/ktw.jpg'
-];
+// String _host = 'https://ktwdevapi.ktw.co.th';
+// final List<String> imgList = [
+//   _host +
+//       '/medias/sys_master/images/images/h8b/h1b/8845807026206/Happy-May-1900x650.jpg',
+//   _host +
+//       '/medias/sys_master/images/images/h32/h4a/8845808205854/TOHO-1900x650s.jpg',
+//   _host + '/medias/sys_master/images/images/he1/hdc/8845808271390/ktw.jpg'
+// ];
 
 final List<String> brandList = [
   'https://ktw.co.th/content/images/thumbs/0354156_3m-3-็ม_300.jpeg',
