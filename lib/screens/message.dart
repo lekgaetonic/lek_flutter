@@ -74,7 +74,7 @@ class _MessageState extends State<Message> {
                       child: Text(
                         '111,111',
                         style: TextStyle(
-                            color: const Color(0xFF68A63B),
+                            color: const Color(0xFF7cce0a),
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
@@ -143,7 +143,7 @@ class _MessageState extends State<Message> {
                     Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
-                          color: const Color(0xFF68A63B)),
+                          color: const Color(0xFF7cce0a)),
                       margin: EdgeInsets.only(right: 5),
                       padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                       child: Text(
@@ -161,7 +161,7 @@ class _MessageState extends State<Message> {
                       child: Text(
                         '111,111',
                         style: TextStyle(
-                            color: const Color(0xFF68A63B),
+                            color: const Color(0xFF7cce0a),
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
@@ -230,13 +230,13 @@ class _MessageState extends State<Message> {
                     Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
-                          color: const Color(0x9968A63B)),
+                          color: const Color(0xFFfdcd00)),
                       margin: EdgeInsets.only(right: 5),
                       padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                       child: Text(
                         'lowStock',
                         style: TextStyle(
-                            color: const Color(0xFFFFFFFF), fontSize: 12),
+                            color: const Color(0xFF333333), fontSize: 12),
                       ),
                     ),
                   ],
@@ -248,7 +248,7 @@ class _MessageState extends State<Message> {
                       child: Text(
                         '111,111',
                         style: TextStyle(
-                            color: const Color(0xFF68A63B),
+                            color: const Color(0xFF7cce0a),
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
