@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:my_flutter_app/models/componentModel.dart';
-import 'package:my_flutter_app/util/shared.dart';
 import 'package:my_flutter_app/services/homeService.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:loading_animations/loading_animations.dart';
@@ -12,6 +11,7 @@ class BannerWidget extends StatefulWidget {
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
+  final String HOST = 'https://ktwdevapi.ktw.co.th';
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   List<ComponentModel> _data = null;
   bool _isLoading = true;

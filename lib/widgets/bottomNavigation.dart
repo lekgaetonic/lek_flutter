@@ -5,6 +5,7 @@ import 'package:my_flutter_app/screens/home.dart';
 import 'package:my_flutter_app/screens/message.dart';
 import 'package:my_flutter_app/screens/wishlist.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:my_flutter_app/util/globalStageManager.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -12,30 +13,28 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
+  GlobalStageManager _gsm = GlobalStageManager();
+
   @override
   void initState() {
     super.initState();
+
+    _gsm.getBottomNavigationCurrentIndex().then((value) => {
+          setState(() {
+            _selectedIndex = value;
+          })
+        });
   }
 
-  List<Widget> _pageWidget = <Widget>[
-    Home(),
-    Message(),
-    Cart(),
-    Wishlish(),
-    Account(),
-  ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    _gsm.setBottomNavigationCurrentIndex(index);
     switch (index) {
       case 0:
         {
           Navigator.pushNamed(context, '/home');
         }
         break;
-
       case 1:
         {
           Navigator.pushNamed(context, '/message');
