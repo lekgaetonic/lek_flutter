@@ -14,6 +14,7 @@ import 'package:my_flutter_app/screens/cart.dart';
 import 'package:my_flutter_app/screens/wishlist.dart';
 import 'package:my_flutter_app/screens/account.dart';
 import 'package:my_flutter_app/screens/search.dart';
+import 'package:my_flutter_app/util/accessTokenManager.dart';
 
 /// main is entry point of Flutter application
 void main() {
@@ -44,7 +45,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
+  AccessTokenManager atm = AccessTokenManager();
   Future<TokenData> fetchAnonymousToken() async {
     Dio dio = new Dio();
     Response response = await dio.post(
@@ -76,11 +77,10 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     fetchAnonymousToken().then((value) => {
-          _prefs.then((SharedPreferences prefs) =>
-              prefs.setString("token", _token.accessToken)),
+          atm.setAccessToken(value.accessToken),
           setState(() {
-            _token = value;
             _isLoading = false;
+            _token = value;
           })
         });
   }

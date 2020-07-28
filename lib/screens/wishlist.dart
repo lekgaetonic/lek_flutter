@@ -9,10 +9,17 @@ class Wishlish extends StatefulWidget {
 
 class _WishlishState extends State<Wishlish> {
   @override
+  void initState() {
+    super.initState();
+    print('wishlist --> init');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('wishlist --> build');
     return Scaffold(
       appBar: Header(),
-      body: Text("wishlish"),
+      body: Text("wishlist"),
       bottomNavigationBar: BottomNavigation(),
     );
   }

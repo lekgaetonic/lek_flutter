@@ -24,13 +24,12 @@ class _HomeState extends State<Home> {
       primaryColor: Colors.grey,
       title: 'KTW Shop',
       appName: 'KTW Shop',
-      appBarIconThemeColor: Colors.white);
+      appBarIconThemeColor: Color(0xFFFBD3AF));
+
   @override
   void initState() {
     super.initState();
-    print('initState');
-    //getToken().then((value) => _futureAuthen = value != null);
-
+    print('home --> init');
     fetchCustomTheme().then((value) => setState(() {
           _customTheme = value;
         }));
@@ -38,9 +37,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    int _current = 0;
+    print('home --> build');
 
     return Scaffold(
+      backgroundColor: const Color(0xFFF4F4F4),
       appBar: Header(),
       body: SingleChildScrollView(
         // this will make your body scrollable
@@ -64,20 +64,23 @@ class _HomeState extends State<Home> {
                     Container(
                         margin: EdgeInsets.all(6.0),
                         alignment: Alignment.center,
-                        child: Stack(children: <Widget>[
-                          Image.network(itemText),
-                          Align(
-                            alignment: Alignment
-                                .center, // Align however you like (i.e .centerRight, centerLeft)
-                            child: Text("อุปกรณ์เสริมและขัดเจีย",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    backgroundColor: Colors.black54)),
-                          ),
-                        ])),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Stack(children: <Widget>[
+                            Image.network(itemText),
+                            Align(
+                              alignment: Alignment
+                                  .center, // Align however you like (i.e .centerRight, centerLeft)
+                              child: Text("อุปกรณ์เสริมและขัดเจีย",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      backgroundColor: Colors.black54)),
+                            ),
+                          ]),
+                        )),
                   ]);
                 }).toList()),
             sectionHeader("แบรนด์ชั้นนำ"),

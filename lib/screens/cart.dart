@@ -9,7 +9,14 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   @override
+  void initState() {
+    super.initState();
+    print('cart --> init');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('cart --> build');
     return Scaffold(
       appBar: Header(),
       body: Text("cart"),

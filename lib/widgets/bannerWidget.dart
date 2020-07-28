@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:my_flutter_app/models/componentModel.dart';
 import 'package:my_flutter_app/services/homeService.dart';
+import 'package:my_flutter_app/util/accessTokenManager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:loading_animations/loading_animations.dart';
 
@@ -13,16 +14,17 @@ class BannerWidget extends StatefulWidget {
 class _BannerWidgetState extends State<BannerWidget> {
   final String HOST = 'https://ktwdevapi.ktw.co.th';
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  AccessTokenManager atm = AccessTokenManager();
   List<ComponentModel> _data = null;
   bool _isLoading = true;
-  String _token = "";
+  //String _accessToken = "";
   @override
   void initState() {
     super.initState();
-    // String _token = "";
-    _prefs
-        .then((value) => _token = value.getString("token"))
-        .then((value) => HomeService().fetchHomeWidget(_token))
+    atm
+        .getAccessToken()
+        .then((accessToken) => HomeService().fetchHomeWidget(accessToken))
         .then((value) => {
               setState(() {
                 _data = value.rotates;

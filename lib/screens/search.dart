@@ -9,7 +9,14 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   @override
+  void initState() {
+    super.initState();
+    print('search --> init');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('search --> build');
     return Scaffold(
       appBar: Header(),
       body: Text("message"),

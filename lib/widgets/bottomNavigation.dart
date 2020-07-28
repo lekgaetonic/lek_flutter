@@ -14,7 +14,7 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   GlobalStageManager _gsm = GlobalStageManager();
-
+  @override
   @override
   void initState() {
     super.initState();
@@ -30,37 +30,29 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void _onItemTapped(int index) {
     _gsm.setBottomNavigationCurrentIndex(index);
     switch (index) {
-      case 0:
-        {
-          Navigator.pushNamed(context, '/home');
-        }
-        break;
       case 1:
         {
-          Navigator.pushNamed(context, '/message');
+          Navigator.pushReplacementNamed(context, '/message');
         }
         break;
       case 2:
         {
-          Navigator.pushNamed(context, '/cart');
+          Navigator.pushReplacementNamed(context, '/cart');
         }
         break;
       case 3:
         {
-          Navigator.pushNamed(context, '/wishlist');
+          Navigator.pushReplacementNamed(context, '/wishlist');
         }
         break;
       case 4:
         {
-          Navigator.pushNamed(context, '/account');
+          Navigator.pushReplacementNamed(context, '/account');
         }
         break;
       default:
         {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Home()),
-          );
+          Navigator.pushReplacementNamed(context, '/home');
         }
         break;
     }
@@ -77,7 +69,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         selectedFontSize: 12,
         // showSelectedLabels: false,
         showUnselectedLabels: true,
-        unselectedItemColor: Color(0xFF707070),
+        unselectedItemColor: Color(0xFFAAAAAA),
         currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xFFF5821F),
         onTap: _onItemTapped,

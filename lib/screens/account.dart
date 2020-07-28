@@ -9,7 +9,14 @@ class Account extends StatefulWidget {
 
 class _AccountState extends State<Account> {
   @override
+  void initState() {
+    super.initState();
+    print('account --> init');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('account --> build');
     return Scaffold(
       appBar: Header(),
       body: Text("account"),
